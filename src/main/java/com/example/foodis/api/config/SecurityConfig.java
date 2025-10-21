@@ -40,8 +40,8 @@ public class SecurityConfig {
                                         "/api/orders/all","/api/orders/status/**","/api/contact/**")
                                 .permitAll().anyRequest().authenticated())
                 .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                /*.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);*/
         return http.build();
 
     }
