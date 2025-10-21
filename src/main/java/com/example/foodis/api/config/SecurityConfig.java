@@ -31,10 +31,12 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(Customizer.withDefaults())
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/users/register", "/api/auth/login","/api/foods/**",
+                        auth.requestMatchers("/api/users/register",
+                                        "/api/demo",
+                                        "/api/auth/login","/api/foods/**",
                                         "/api/orders/all","/api/orders/status/**","/api/contact/**")
                                 .permitAll().anyRequest().authenticated())
                 .sessionManagement(session ->
