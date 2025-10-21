@@ -40,8 +40,8 @@ public class SecurityConfig {
                                         "/api/orders/all","/api/orders/status/**","/api/contact/**")
                                 .permitAll().anyRequest().authenticated())
                 .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-                /*.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);*/
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
 
     }
@@ -62,13 +62,11 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
-                "https://caring-passion-production-c8f2.up.railway.app",
-                "http://localhost:5173" // frontend dev için
+            "*"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-        config.setAllowedHeaders(List.of("*"));
+        config.setAllowedHeaders(List.of("Authorization","Content-Type"));
         config.setAllowCredentials(true);  // sadece spesifik originlerle çalışır
-        config.addExposedHeader("Authorization");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
