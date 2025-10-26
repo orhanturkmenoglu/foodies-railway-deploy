@@ -51,18 +51,11 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
-    @Bean
-    public CorsFilter corsFilter() {
-        return new CorsFilter(corsConfigurationSource());
-    }
-
-
     private UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
-            "https://courageous-eclair-2d1f82.netlify.app/","https://neon-cuchufli-c0ad36.netlify.app/"
+            "http://localhost:5173","https://courageous-eclair-2d1f82.netlify.app/","https://neon-cuchufli-c0ad36.netlify.app/"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(List.of("Authorization","Content-Type"));
