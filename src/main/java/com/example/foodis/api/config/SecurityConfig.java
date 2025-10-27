@@ -37,7 +37,8 @@ public class SecurityConfig {
                         auth.requestMatchers("/api/users/register",
                                         "/api/demo",
                                         "/api/auth/login","/api/foods/**",
-                                        "/api/orders/all","/api/orders/status/**","/api/contact/**")
+                                        "/api/orders/all",
+                                        "/api/orders/status/**","/api/contact/**")
                                 .permitAll().anyRequest().authenticated())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -55,7 +56,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
-            "http://localhost:5173","https://courageous-eclair-2d1f82.netlify.app/","https://neon-cuchufli-c0ad36.netlify.app/"
+            "http://localhost:5173","https://courageous-eclair-2d1f82.netlify.app","https://neon-cuchufli-c0ad36.netlify.app"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(List.of("Authorization","Content-Type"));
