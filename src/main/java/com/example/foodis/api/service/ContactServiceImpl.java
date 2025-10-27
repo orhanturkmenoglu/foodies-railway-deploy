@@ -23,7 +23,7 @@ public class ContactServiceImpl implements ContactService {
     public ContactResponse addContact(ContactRequest contactRequest) throws MessagingException {
         ContactEntity contactEntity = convertToEntity(contactRequest);
         ContactEntity savedEntity = contactRepository.save(contactEntity);
-      //  emailService.sendHtmlMail(contactRequest);
+        emailService.sendHtmlMail(contactRequest);
         return  convertToResponse(savedEntity);
     }
 
